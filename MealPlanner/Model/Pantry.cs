@@ -41,7 +41,19 @@ namespace MealPlanner.Model
         /// <param name="quantity">The new amount to set</param>
         public void AddIngredient(IIngredient ingredient, int quantity)
         {
-            //Implement Me
+            foreach (IIngredient ing in ingredients.Keys)
+            {
+                if (ing.Name.Equals(ingredient.Name))
+                {
+                    ingredients[ing] += quantity;
+                    return;
+                }
+                else
+                {
+                    ingredients.Add(ingredient, quantity);
+                    return;
+                }
+            }
         }
 
         /// <summary>
