@@ -33,7 +33,7 @@ namespace MealPlanner.Model
         {
             foreach (string file in recipeFiles)
             {
-                new
+
                 string[] recipe = File.ReadAllLines(file);
                 string[] RecipeTitle = recipe[0].Split(' ');
                 string recipeName = RecipeTitle[0];

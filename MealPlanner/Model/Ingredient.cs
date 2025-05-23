@@ -7,6 +7,25 @@ namespace MealPlanner.Model
 {
     public class Ingredient : IIngredient
     {
+        public string Name { get; private set; }
 
+        public string Type { get; private set; }
+
+        public Ingredient(string name, string type)
+        {
+            Name = name;
+            Type = type;
+        }
+        public bool Equals(IIngredient other)
+        {
+            if (other.Name == this.Name && other.Type == this.Type)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
