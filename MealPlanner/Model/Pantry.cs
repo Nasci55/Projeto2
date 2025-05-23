@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace MealPlanner.Model
 {
@@ -66,7 +67,21 @@ namespace MealPlanner.Model
         /// pantry or if there's not enough quantity</returns>
         public bool ConsumeIngredient(IIngredient ingredient, int quantity)
         {
-            //Implement Me
+            foreach (IIngredient ing in ingredients.Keys)
+            {
+                if (ing.Name.Equals(ingredient.Name))
+                {
+                    if (ingredients[ing] >= quantity)
+                    {
+                        ingredients[ing] -= quantity;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
             return false;
         }
 
