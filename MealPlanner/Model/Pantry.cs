@@ -44,17 +44,13 @@ namespace MealPlanner.Model
         {
             foreach (IIngredient ing in ingredients.Keys)
             {
-                if (ing.Name.Equals(ingredient.Name))
+                if (ing.Name.Equals(ingredient.Name) && ing.Type.Equals(ingredient.Type))
                 {
                     ingredients[ing] += quantity;
                     return;
                 }
-                else
-                {
-                    ingredients.Add(ingredient, quantity);
-                    return;
-                }
             }
+            ingredients.Add(ingredient, quantity);
         }
 
         /// <summary>

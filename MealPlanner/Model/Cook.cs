@@ -38,12 +38,22 @@ namespace MealPlanner.Model
                 string[] RecipeTitle = recipe[0].Split(' ');
                 string recipeName = RecipeTitle[0];
                 double successRate = double.Parse(RecipeTitle[1]);
+
+                Dictionary<IIngredient, int> ingredientsNeeded = new Dictionary<IIngredient, int>();
+
                 for (int i = 1; i < recipe.Length; i++)
                 {
-                    string[] ingredient = recipe[i].Split(" ");
-                    string ingredientName = ingredient[0];
-                    int quantity = int.Parse(ingredient[1]);
+                    string[] ingredientParts = recipe[i].Split(' ');
+                    string ingredientName = ingredientParts[0];
+                    int quantity = int.Parse(ingredientParts[1]);
+                    IIngredient ingredient = pantry.GetIngredient(ingredientName);
+                    if (ingredient != null)
+                    {
+                        ingredientsNeeded[ingredient] = quantity;
+                    }
                 }
+                Recipe newRecipe = new Recipe(recipeName, ingredientsNeeded, successRate);
+                recipeBook.Add(newRecipe);
 
             }
         }
