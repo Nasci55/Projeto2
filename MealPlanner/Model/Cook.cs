@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace MealPlanner.Model
 {
@@ -30,7 +31,21 @@ namespace MealPlanner.Model
         /// <param name="recipeFiles">Array of file paths</param>
         public void LoadRecipeFiles(string[] recipeFiles)
         {
-            //Implement Me
+            foreach (string file in recipeFiles)
+            {
+                new
+                string[] recipe = File.ReadAllLines(file);
+                string[] RecipeTitle = recipe[0].Split(' ');
+                string recipeName = RecipeTitle[0];
+                double successRate = double.Parse(RecipeTitle[1]);
+                for (int i = 1; i < recipe.Length; i++)
+                {
+                    string[] ingredient = recipe[i].Split(" ");
+                    string ingredientName = ingredient[0];
+                    int quantity = int.Parse(ingredient[1]);
+                }
+
+            }
         }
 
         /// <summary>
@@ -52,7 +67,7 @@ namespace MealPlanner.Model
                     break;
                 }
             }
-            
+
             if (selected == null)
                 return "Recipe not found.";
 
@@ -65,7 +80,7 @@ namespace MealPlanner.Model
                 {
                     if (have == 0)
                         return "Missing ingredient: " + ingredient.Name;
-         
+
                     return "Not enough " + ingredient.Name +
                            " (need " + need + ", have " + have + ")";
                 }
