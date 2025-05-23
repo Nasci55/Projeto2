@@ -94,7 +94,10 @@ namespace MealPlanner.Model
 
                 string name = parts[0].Trim();
                 string type = parts[1].Trim();
+                int quantity = int.Parse(parts[2].Trim());
                 IIngredient ingredient = new Ingredient(name, type);
+
+                AddIngredient(ingredient, quantity);
             }
         }
     }
